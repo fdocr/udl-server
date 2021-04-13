@@ -1,6 +1,6 @@
 # Universal Deep Link (UDL) Server
 
-This server helps bounce traffic back to your domain to better leverage Deep Linking in mobile apps.
+This is a server that bounces traffic to better leverage Deep Linking in mobile apps.
 
 The project's objectives are to be a simple, effective and lightweight tool that can help any website provide a seamless integration with their mobile apps.
 
