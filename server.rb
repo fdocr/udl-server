@@ -1,11 +1,21 @@
 require 'sinatra'
-require "sinatra/reloader" if development?
+if development?
+  require "sinatra/reloader"
+  require 'dotenv/load'
+end
 require 'uri'
+require 'json'
 
 get '/' do
-  redirect URI(params[:r])
+  begin
+    redirect URI(params[:r])
+  rescue => error
+    @error = error
+    puts @error.inspect
+    erb :fallback
+  end
 end
 
-post '/' do
-  redirect URI(params[:r])
+get '/*' do
+  erb :fallback
 end

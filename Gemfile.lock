@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    dotenv (2.7.6)
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -31,6 +32,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dotenv (~> 2.7, >= 2.7.6)
   puma (~> 5.2, >= 5.2.2)
   sinatra (~> 2.1)
   sinatra-reloader (~> 1.0)

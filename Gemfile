@@ -5,5 +5,9 @@ source "https://rubygems.org"
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
 gem 'sinatra', '~> 2.1'
-gem 'sinatra-reloader', '~> 1.0'
 gem 'puma', '~> 5.2', '>= 5.2.2'
+
+group :test, :development do
+  gem 'sinatra-reloader', '~> 1.0'
+  gem 'dotenv', '~> 2.7', '>= 2.7.6'
+end
