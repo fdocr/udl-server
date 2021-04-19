@@ -1,8 +1,5 @@
 name: CI
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push
 jobs:
   test:
     name: Test Suite
@@ -14,7 +11,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
-          bundler-cache: true
       - name: Install dependencies
         run: bundle install
       - name: Run tests
