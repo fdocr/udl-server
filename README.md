@@ -40,7 +40,7 @@ You can further restrict if the server will allow or deny a redirect based on pa
 ```bash
 # All redirect requests for "tiktok.com" will be safelisted
 # https://github.com/rack/rack-attack#safelisting
-UDL_SAFELIST_REGEXP="/^https:\/\/tiktok.com/"
+UDL_SAFELIST_REGEXP="^https:\/\/tiktok.com"
 ```
 
 [Read more](https://github.com/rack/rack-attack#how-it-works) about how `Rack::Attack` safelist/blacklist features work.
