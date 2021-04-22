@@ -10,8 +10,8 @@ If you implemented a bugfix, a new feature, or updated the docs/tests feel free 
 
 1. Fork the repository
 1. Install the dependencies & run locally
-  - `bundle install`
-  - `bundle exec puma -p 4567`
+   - `bundle install`
+   - `bundle exec puma -p 4567`
 1. Create your feature branch
    - `git checkout -b my-new-feature`
 1. Work on your fix/feature
