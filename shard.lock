@@ -1,5 +1,9 @@
 version: 2.0
 shards:
+  defense:
+    git: https://github.com/fdoxyz/defense.git
+    version: 0.3.0+git.commit.0b06b6d9d1533abe5c014786fe8b479f09bde610
+
   exception_page:
     git: https://github.com/crystal-loot/exception_page.git
     version: 0.1.5
@@ -12,9 +16,17 @@ shards:
     git: https://github.com/jeromegn/kilt.git
     version: 0.4.1
 
+  pool:
+    git: https://github.com/ysbaddaden/pool.git
+    version: 0.2.4
+
   radix:
     git: https://github.com/luislavena/radix.git
     version: 0.4.1
+
+  redis:
+    git: https://github.com/stefanwille/crystal-redis.git
+    version: 2.7.0
 
   spec-kemal:
     git: https://github.com/kemalcr/spec-kemal.git

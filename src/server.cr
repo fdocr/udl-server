@@ -1,7 +1,18 @@
 require "kemal"
+require "defense"
 require "uri"
 
 error_context = "Use the root path instead `/?r=TARGET_URL_HERE`"
+
+if ENV.has_key?("REDIS_URL")
+  Defense.store = Defense::RedisStore.new(url: ENV["REDIS_URL"])
+  Defense.throttle("requests/ip", limit: 3, period: 5) do |request|
+    pp request.remote_address.to_s
+    request.remote_address.to_s
+  end
+
+  add_handler Defense::Handler.new
+end
 
 get "/" do |env|
   begin
