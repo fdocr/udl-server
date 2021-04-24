@@ -11,6 +11,9 @@ targets:
 dependencies:
   kemal:
     github: kemalcr/kemal
+  spec-kemal:
+    github: kemalcr/spec-kemal
+    branch: master
 
 crystal: 1.0.0
 

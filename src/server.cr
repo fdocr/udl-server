@@ -5,7 +5,14 @@ error_context = "Use the root path instead `/?r=TARGET_URL_HERE`"
 
 get "/" do |env|
   begin
-    env.redirect URI.parse(env.params.query["r"]).to_s
+    target_uri = URI.parse(env.params.query["r"])
+
+    # Check that it's a valid URL
+    valid_uri = /https?/ =~ target_uri.scheme && target_uri.host
+    raise "Invalid redirect URL" unless valid_uri
+
+    # Redirect (bounce back) requested URL
+    env.redirect target_uri.to_s
   rescue udl_error
     render "src/views/fallback.ecr"
   end
