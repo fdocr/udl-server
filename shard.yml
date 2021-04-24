@@ -1,0 +1,17 @@
+name: UDL Server
+version: 0.1.0
+
+authors:
+  - Fernando Valverde <fernando@visualcosita.com>
+
+targets:
+  udl-server:
+    main: src/udl_server.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+
+crystal: 1.0.0
+
+license: MIT
