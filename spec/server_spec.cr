@@ -1,7 +1,6 @@
 require "./spec_helper"
 
 describe "UDL Server" do
-
   context "success" do
     it "redirects to the r parameter if valid" do
       target_url = "https://dev.to/fdoxyz"
@@ -37,5 +36,4 @@ describe "UDL Server" do
       response.body.should contain("Check out the <a href=\"https://github.com/fdoxyz/udl-server#Troubleshooting\">README</a> for more details")
     end
   end
-
 end
