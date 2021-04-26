@@ -30,5 +30,5 @@ shards:
 
   spec-kemal:
     git: https://github.com/kemalcr/spec-kemal.git
-    version: 0.5.0+git.commit.88a56be7eda0a7f102a3e3f20cc492816581176a
+    version: 1.0.0
 

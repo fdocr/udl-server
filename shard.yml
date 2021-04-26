@@ -13,7 +13,6 @@ dependencies:
     github: kemalcr/kemal
   spec-kemal:
     github: kemalcr/spec-kemal
-    branch: master
   defense:
     github: fdoxyz/defense
     branch: dependency-bump-crystal-1-0-0

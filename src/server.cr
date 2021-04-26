@@ -4,15 +4,30 @@ require "uri"
 
 error_context = "Use the root path instead `/?r=TARGET_URL_HERE`"
 
-if ENV.has_key?("REDIS_URL")
-  Defense.store = Defense::RedisStore.new(url: ENV["REDIS_URL"])
-  Defense.throttle("requests/ip", limit: 3, period: 5) do |request|
-    pp request.remote_address.to_s
+if ENV.has_key?("UDL_THROTTLE_LIMIT") && ENV.has_key?("UDL_THROTTLE_PERIOD")
+  limit = ENV["UDL_THROTTLE_LIMIT"].to_i
+  period = ENV["UDL_THROTTLE_PERIOD"].to_i
+  Defense.throttle("req/ip", limit: limit, period: period) do |request|
+    # To throttle on localhost -> request.remote_address.to_s.split(":").first
     request.remote_address.to_s
   end
-
-  add_handler Defense::Handler.new
 end
+
+if ENV.has_key?("UDL_SAFELIST_REGEXP")
+  safelist_regexp = Regex.new(ENV["UDL_SAFELIST_REGEXP"])
+  Defense.safelist("blocklist redirects") do |request|
+    !(request.query_params["r"] =~ safelist_regexp).nil?
+  end
+end
+
+if ENV.has_key?("UDL_BLOCKLIST_REGEXP")
+  blocklist_regexp = Regex.new(ENV["UDL_BLOCKLIST_REGEXP"])
+  Defense.blocklist("safelist redirects") do |request|
+    !(request.query_params["r"] =~ blocklist_regexp).nil?
+  end
+end
+
+add_handler Defense::Handler.new
 
 get "/" do |env|
   begin
@@ -40,4 +55,5 @@ error 404 do
 end
 
 serve_static false
+Kemal.config.port = (ENV["PORT"]? || "3000").to_i
 Kemal.run
