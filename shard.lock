@@ -1,8 +1,8 @@
 version: 2.0
 shards:
   defense:
-    git: https://github.com/fdoxyz/defense.git
-    version: 0.3.0+git.commit.0b06b6d9d1533abe5c014786fe8b479f09bde610
+    git: https://github.com/defense-cr/defense.git
+    version: 0.4.0
 
   exception_page:
     git: https://github.com/crystal-loot/exception_page.git

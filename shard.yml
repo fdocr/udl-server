@@ -14,8 +14,7 @@ dependencies:
   spec-kemal:
     github: kemalcr/spec-kemal
   defense:
-    github: fdoxyz/defense
-    branch: dependency-bump-crystal-1-0-0
+    github: defense-cr/defense
 
 crystal: 1.0.0
 
