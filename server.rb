@@ -47,16 +47,20 @@ get '/' do
 end
 
 get '/.well-known/apple-app-site-association' do
+  aasa_app_id = ENV['AASA_APP_ID'].to_s
   content_type :json
   {
     "applinks": {
       "apps": [],
       "details":[
         {
-          "appID": ENV['AASA_APP_ID'].to_s,
+          "appID": aasa_app_id,
           "paths": ["/*"]
         }
       ]
+    },
+    "activitycontinuation": {
+      "apps": [aasa_app_id]
     }
   }.to_json
 end
