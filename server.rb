@@ -47,28 +47,33 @@ get '/' do
 end
 
 get '/.well-known/apple-app-site-association' do
-  aasa_app_id = ENV['AASA_APP_ID'].to_s
   content_type :json
-  {
-    "applinks": {
-      "apps": [],
-      "details":[
-        {
-          "appID": aasa_app_id,
-          "paths": ["/*"]
-        }
-      ]
-    },
-    "activitycontinuation": {
-      "apps": [aasa_app_id]
-    }
-  }.to_json
+
+  aasa_app_id = ENV['AASA_APP_ID'].to_s
+  if aasa_app_id.present?
+    {
+      "applinks": {
+        "apps": [],
+        "details":[
+          {
+            "appID": aasa_app_id,
+            "paths": ["/*"]
+          }
+        ]
+      },
+      "activitycontinuation": {
+        "apps": [aasa_app_id]
+      }
+    }.to_json
+  else
+    { error: 'AASA_APP_ID not configured' }.to_json
+  end
 end
 
 get '/*' do
   begin
-    target_url = URI(params['splat'].first)
-    raise 'Invalid redirect URL' if target_url.host != request.host
+    target_url = URI(params['splat'].first.gsub('https:/', 'https://'))
+    raise 'Invalid redirect URL' unless target_url.host.present?
     redirect target_url
   rescue => error
     @error = error
