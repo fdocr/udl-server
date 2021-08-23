@@ -6,14 +6,15 @@ if !production?
 end
 
 require 'uri'
+require 'json'
 require 'redis-activesupport'
 require 'rack/attack'
 
-if ENV['REDIS_URL'].present?
-  Rack::Attack.cache.store = ActiveSupport::Cache.lookup_store :redis_store
+Rack::Attack.cache.store = ActiveSupport::Cache.lookup_store :redis_store
 
-  limit = (ENV['UDL_THROTTLE_LIMIT'] || 3).to_i
-  period = (ENV['UDL_THROTTLE_PERIOD'] || 10).to_i
+if ENV['UDL_THROTTLE_LIMIT'].present? && ENV['UDL_THROTTLE_PERIOD'].present?
+  limit = ENV['UDL_THROTTLE_LIMIT'].to_i
+  period = ENV['UDL_THROTTLE_PERIOD'].to_i
   Rack::Attack.throttle('requests/ip', limit: limit, period: period) do |request|
     request.ip
   end
@@ -45,6 +46,33 @@ get '/' do
   end
 end
 
+get '/.well-known/apple-app-site-association' do
+  aasa_app_id = ENV['AASA_APP_ID'].to_s
+  content_type :json
+  {
+    "applinks": {
+      "apps": [],
+      "details":[
+        {
+          "appID": aasa_app_id,
+          "paths": ["/*"]
+        }
+      ]
+    },
+    "activitycontinuation": {
+      "apps": [aasa_app_id]
+    }
+  }.to_json
+end
+
 get '/*' do
-  erb :fallback
+  begin
+    target_url = URI(params['splat'].first)
+    raise 'Invalid redirect URL' if target_url.host != request.host
+    redirect target_url
+  rescue => error
+    @error = error
+    logger.info @error.inspect
+    erb :fallback
+  end
 end

@@ -8,7 +8,7 @@ The server is hosted at [`https://udl.visualcosita.com`](https://udl.visualcosit
 
 ## How it works, and why?
 
-It's a dead simple pivot server that will redirect to whatever you pass in the `r` query param to the root path.
+It's a dead simple pivot server that will allow for Universal Links to work with you app.
 
 Modern mobile browsers provide developers with [Universal Links (iOS)](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html) or [Android Intents](https://developer.chrome.com/docs/multidevice/android/intents/) to support deep linking users from a website directly into a mobile app. However, Operating Systems currently won't trigger these features when the user clicks a link within the same domain or when the user types the URL directly in the address bar.
 
@@ -28,6 +28,10 @@ Power users will likely need better reliability and scalability than a free serv
    - `git remote add upstream git@github.com:fdoxyz/udl-server.git`
    - `git pull upstream main`
    - `git push origin main`
+1. Configure `AASA_APP_ID` ENV variable to match your App Id
+   - Use the team ID or app ID prefix, followed by the bundle ID (joined by a dot `.`).
+   - This will allow your UDL Server to directly serve as a Universal Link target for your app and improve the experience
+   - Example: `R9SWHSQNV8.com.forem.app`
 
 ## Throttling, Safelist and Blocklist
 
