@@ -18,16 +18,18 @@ These and other edge cases make for a less than ideal experience, if your object
 
 ## Self-hosting
 
-Power users will likely need better reliability and scalability than a free service is able to offer. Self-hosting with Heroku (or similar SaaS platforms) is as easy as:
+Power users will likely need better reliability and scalability than a free service is able to offer. Self-hosting with Heroku (or similar hosting solutions) is as easy as:
 
 1. Fork this repository
 1. Configure the app to automatically deploy to your Heroku account
    - Using a [custom domain with Heroku](https://devcenter.heroku.com/articles/custom-domains) is very simple (i.e. `udl.your-domain.com`)
    - Heroku's default subdomain works too (i.e. `my-app.herokuapp.com`)
 1. Keep up with upstream (this repo) for future updates
-   - `git remote add upstream git@github.com:fdoxyz/udl-server.git`
-   - `git pull upstream main`
-   - `git push origin main`
+   - Use the **"Sync fork"** feature in your GitHub repo
+   - Or manually with git commands:
+      - `git remote add upstream git@github.com:fdocr/udl-server.git`
+      - `git pull upstream main`
+      - `git push origin main`
 1. Configure `AASA_APP_ID` ENV variable to match your App Id
    - Use the team ID or app ID prefix, followed by the bundle ID (joined by a dot `.`).
    - This will allow your UDL Server to directly serve as a Universal Link target for your app and improve the experience
@@ -60,12 +62,12 @@ Some common details to keep in mind in case your redirects aren't working proper
 
 ## Contributing
 
-Please check out the [Contributing Guide](https://github.com/fdoxyz/udl-server/blob/main/CONTRIBUTING.md).
+Please check out the [Contributing Guide](https://github.com/fdocr/udl-server/blob/main/CONTRIBUTING.md).
 
 ## Code of Conduct
 
-This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/fdoxyz/udl-server/blob/main/CODE_OF_CONDUCT.md).
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/fdocr/udl-server/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
-Released under an [MIT License](https://github.com/fdoxyz/udl-server/blob/main/LICENSE.txt)
+Released under an [MIT License](https://github.com/fdocr/udl-server/blob/main/LICENSE.txt)
