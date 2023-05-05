@@ -4,7 +4,7 @@ This is a server that bounces traffic to better leverage Deep Linking in mobile 
 
 The project's objectives are to be a simple, effective and lightweight tool that can help any website provide a seamless integration with their mobile apps.
 
-The server is hosted at [`https://udl.visualcosita.com`](https://udl.visualcosita.com) open for public use, free of charge.
+I used to host a server for public use (free of charge) but [due to _"reasons"_](https://github.com/fdocr/udl-server/issues/19#issuecomment-1536587313) it's not available anymore. You can [self host the project](#self-hosting) on most PaaS hosting providers quite easily. [Create an issue](https://github.com/fdocr/udl-server/issues/new) if you need help or have questions.
 
 ## How it works, and why?
 
