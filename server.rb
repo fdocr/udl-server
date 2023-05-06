@@ -72,7 +72,7 @@ end
 
 get '/*' do
   begin
-    target_url = URI(params['splat'].first.gsub('https:/', 'https://'))
+    target_url = URI(params['splat'].first.gsub('https:/', 'https://').gsub('ms-mobile-apps:/', 'ms-mobile-apps://'))
     raise 'Invalid redirect URL' unless target_url.host.present?
     redirect target_url
   rescue => error
