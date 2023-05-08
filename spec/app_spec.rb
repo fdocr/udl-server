@@ -12,18 +12,33 @@ RSpec.describe 'UDL Server' do
   end
 
   context "success" do
-    it "redirects to the r parameter if valid" do
-      target_url = "https://dev.to/fdoxyz"
-      get "/?r=#{target_url}"
-      expect(last_response).to be_redirect
-      expect(last_response.location).to eq(target_url)
+    let(:http_target_url) { "https://dev.to/fdocr" }
+    let(:custom_scheme_target_url) { "ms-mobile-apps:///providers/Microsoft.PowerApps/apps/123?tenantId=456" }
+
+    context "using r query parameter" do
+      it "redirects if URL is valid" do
+        get "/?r=#{http_target_url}"
+        expect(last_response).to be_redirect
+        expect(last_response.location).to eq(http_target_url)
+      end
+
+      it "redirects to MS Power Apps schemes" do 
+        get "/?r=#{custom_scheme_target_url}"
+        expect(last_response).to be_redirect
+      end
     end
 
-    it "redirects when passing target in REST first level param" do
-      target_url = "https://dev.to/fdoxyz"
-      get "/#{target_url}"
-      expect(last_response).to be_redirect
-      expect(last_response.location).to eq(target_url)
+    context "using REST first level param" do
+      it "redirects if URL is valid" do
+        get "/#{http_target_url}"
+        expect(last_response).to be_redirect
+        expect(last_response.location).to eq(http_target_url)
+      end
+
+      it "redirects to MS Power Apps schemes" do
+        get "/#{custom_scheme_target_url}"
+        expect(last_response).to be_redirect
+      end
     end
   end
 
@@ -31,7 +46,7 @@ RSpec.describe 'UDL Server' do
     after(:each) do
       expect(last_response).to be_ok
       expect(last_response.body).to include('Something went wrong')
-      expect(last_response.body).to include('Check out the <a href="https://github.com/fdoxyz/udl-server#Troubleshooting">README</a> for more details')
+      expect(last_response.body).to include('Check out the <a href="https://github.com/fdocr/udl-server#Troubleshooting">README</a> for more details')
     end
 
     it "renders fallback page if r parameter isn't available" do
