@@ -2,7 +2,7 @@
 
 Thank you for the interest in the project!
 
-If you found a bug, have a feature request or need help (ask questions) [open a new issue](https://github.com/fdoxyz/udl-server/issues/new).
+If you found a bug, have a feature request or need help (ask questions) [open a new issue](https://github.com/fdocr/udl-server/issues/new).
 
 If you implemented a bugfix, a new feature, or updated the docs/tests feel free to __Submit a Pull Request__ so it can be reviewed and hopefully merged.
 
