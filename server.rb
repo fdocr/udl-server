@@ -12,6 +12,9 @@ require 'rack/attack'
 
 Rack::Attack.cache.store = ActiveSupport::Cache.lookup_store :redis_store
 
+http_redirect_regexp = /^https?:\/.+/
+scheme_redirect_regexp = /^\S+:\/.+/
+
 if ENV['UDL_THROTTLE_LIMIT'].present? && ENV['UDL_THROTTLE_PERIOD'].present?
   limit = ENV['UDL_THROTTLE_LIMIT'].to_i
   period = ENV['UDL_THROTTLE_PERIOD'].to_i
@@ -38,7 +41,14 @@ end
 
 get '/' do
   begin
-    redirect URI(params[:r])
+    requested_url = params[:r]
+    if http_redirect_regexp.match(requested_url)
+      redirect URI(requested_url)
+    elsif scheme_redirect_regexp.match(requested_url)
+      redirect requested_url
+    else
+      raise 'Requested URI is invalid'
+    end
   rescue => error
     @error = error
     logger.info @error.inspect
@@ -72,9 +82,16 @@ end
 
 get '/*' do
   begin
-    target_url = URI(params['splat'].first.gsub('https:/', 'https://').gsub('ms-mobile-apps:/', 'ms-mobile-apps://'))
-    raise 'Invalid redirect URL' unless target_url.host.present?
-    redirect target_url
+    requested_url = params['splat'].first
+    if http_redirect_regexp.match(requested_url)
+      target_url = URI(requested_url.gsub(':/', '://'))
+      raise 'Invalid redirect URL' if target_url&.host.nil?
+      redirect target_url
+    elsif scheme_redirect_regexp.match(requested_url)
+      redirect requested_url.gsub(':/', ':///')
+    else
+      raise 'Target redirect location must have a scheme'
+    end
   rescue => error
     @error = error
     logger.info @error.inspect
