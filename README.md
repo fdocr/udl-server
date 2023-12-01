@@ -4,11 +4,11 @@ This is a server that bounces traffic to better leverage Deep Linking in mobile 
 
 The project's objectives are to be a simple, effective and lightweight tool that can help any website provide a seamless integration with their mobile apps.
 
-The server is hosted at [`https://udl.visualcosita.com`](https://udl.visualcosita.com) open for public use, free of charge.
+I used to host a server for public use (free of charge) but [due to _"reasons"_](https://github.com/fdocr/udl-server/issues/19#issuecomment-1536587313) it's not available anymore. You can [self host the project](#self-hosting) on most PaaS hosting providers quite easily. [Create an issue](https://github.com/fdocr/udl-server/issues/new) if you need help or have questions.
 
 ## How it works, and why?
 
-It's a dead simple pivot server that will redirect to whatever you pass in the `r` query param to the root path.
+It's a dead simple pivot server that will allow for Universal Links to work with you app.
 
 Modern mobile browsers provide developers with [Universal Links (iOS)](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html) or [Android Intents](https://developer.chrome.com/docs/multidevice/android/intents/) to support deep linking users from a website directly into a mobile app. However, Operating Systems currently won't trigger these features when the user clicks a link within the same domain or when the user types the URL directly in the address bar.
 
@@ -18,16 +18,22 @@ These and other edge cases make for a less than ideal experience, if your object
 
 ## Self-hosting
 
-Power users will likely need better reliability and scalability than a free service is able to offer. Self-hosting with Heroku (or similar SaaS platforms) is as easy as:
+Power users will likely need better reliability and scalability than a free service is able to offer. Self-hosting with Heroku (or similar hosting solutions) is as easy as:
 
 1. Fork this repository
 1. Configure the app to automatically deploy to your Heroku account
    - Using a [custom domain with Heroku](https://devcenter.heroku.com/articles/custom-domains) is very simple (i.e. `udl.your-domain.com`)
    - Heroku's default subdomain works too (i.e. `my-app.herokuapp.com`)
 1. Keep up with upstream (this repo) for future updates
-   - `git remote add upstream git@github.com:fdocr/udl-server.git`
-   - `git pull upstream main`
-   - `git push origin main`
+   - Use the **"Sync fork"** feature in your GitHub repo
+   - Or manually with git commands:
+      - `git remote add upstream git@github.com:fdocr/udl-server.git`
+      - `git pull upstream main`
+      - `git push origin main`
+1. Configure `AASA_APP_ID` ENV variable to match your App Id
+   - Use the team ID or app ID prefix, followed by the bundle ID (joined by a dot `.`).
+   - This will allow your UDL Server to directly serve as a Universal Link target for your app and improve the experience
+   - Example: `R9SWHSQNV8.com.forem.app`
 
 ## Throttling, Safelist and Blocklist
 
