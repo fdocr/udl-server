@@ -3,7 +3,7 @@ require "./spec_helper"
 describe "UDL Server" do
   context "success" do
     it "redirects to the r parameter if valid" do
-      target_url = "https://dev.to/fdoxyz"
+      target_url = "https://dev.to/fdocr"
       get "/?r=#{target_url}"
 
       response.headers["Location"].should eq(target_url)
@@ -17,7 +17,7 @@ describe "UDL Server" do
 
       response.status_code.should eq(200)
       response.body.should contain("Something went wrong")
-      response.body.should contain("Check out the <a href=\"https://github.com/fdoxyz/udl-server#Troubleshooting\">README</a> for more details")
+      response.body.should contain("Check out the <a href=\"https://github.com/fdocr/udl-server#Troubleshooting\">README</a> for more details")
     end
 
     it "renders fallback page if requesting any other path" do
@@ -25,7 +25,7 @@ describe "UDL Server" do
 
       response.status_code.should eq(200)
       response.body.should contain("Something went wrong")
-      response.body.should contain("Check out the <a href=\"https://github.com/fdoxyz/udl-server#Troubleshooting\">README</a> for more details")
+      response.body.should contain("Check out the <a href=\"https://github.com/fdocr/udl-server#Troubleshooting\">README</a> for more details")
     end
 
     it "renders fallback page if r parameter is an invalid URL" do
@@ -33,7 +33,7 @@ describe "UDL Server" do
 
       response.status_code.should eq(200)
       response.body.should contain("Something went wrong")
-      response.body.should contain("Check out the <a href=\"https://github.com/fdoxyz/udl-server#Troubleshooting\">README</a> for more details")
+      response.body.should contain("Check out the <a href=\"https://github.com/fdocr/udl-server#Troubleshooting\">README</a> for more details")
     end
   end
 end

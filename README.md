@@ -25,7 +25,7 @@ Power users will likely need better reliability and scalability than a free serv
    - Using a [custom domain with Heroku](https://devcenter.heroku.com/articles/custom-domains) is very simple (i.e. `udl.your-domain.com`)
    - Heroku's default subdomain works too (i.e. `my-app.herokuapp.com`)
 1. Keep up with upstream (this repo) for future updates
-   - `git remote add upstream git@github.com:fdoxyz/udl-server.git`
+   - `git remote add upstream git@github.com:fdocr/udl-server.git`
    - `git pull upstream main`
    - `git push origin main`
 
@@ -56,12 +56,12 @@ Some common details to keep in mind in case your redirects aren't working proper
 
 ## Contributing
 
-Please check out the [Contributing Guide](https://github.com/fdoxyz/udl-server/blob/main/CONTRIBUTING.md).
+Please check out the [Contributing Guide](https://github.com/fdocr/udl-server/blob/main/CONTRIBUTING.md).
 
 ## Code of Conduct
 
-This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/fdoxyz/udl-server/blob/main/CODE_OF_CONDUCT.md).
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Code of Conduct](https://github.com/fdocr/udl-server/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
-Released under an [MIT License](https://github.com/fdoxyz/udl-server/blob/main/LICENSE.txt)
+Released under an [MIT License](https://github.com/fdocr/udl-server/blob/main/LICENSE.txt)

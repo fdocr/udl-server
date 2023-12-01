@@ -6,7 +6,7 @@ authors:
 
 targets:
   udl-server:
-    main: src/udl_server.cr
+    main: src/server.cr
 
 dependencies:
   kemal:
@@ -14,8 +14,9 @@ dependencies:
   spec-kemal:
     github: kemalcr/spec-kemal
   defense:
-    github: defense-cr/defense
+    github: fdocr/defense
+    branch: jgaskins-redis
 
-crystal: 1.0.0
+crystal: 1.10.1
 
 license: MIT
