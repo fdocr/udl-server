@@ -25,7 +25,7 @@ jobs:
         uses: crystal-lang/install-crystal@v1
 
       - name: Cache shards
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: lib
           key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
