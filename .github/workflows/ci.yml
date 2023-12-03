@@ -1,29 +1,40 @@
 name: CI
+
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - "*"
+
 jobs:
-  test:
-    name: Test Suite
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        safelist:
+          - "fdo.cr github.com"
+          - ""
     steps:
       - name: Download source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1
+
       - name: Cache shards
         uses: actions/cache@v2
         with:
-          path: ~/.cache/shards
-          key: ${{ runner.os }}-shards-${{ hashFiles('shard.yml') }}
+          path: lib
+          key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
           restore-keys: ${{ runner.os }}-shards-
+
       - name: Install shards
-        run: shards install
+        run: shards update
+
       - name: Run tests
-        run: KEMAL_ENV=test crystal spec
-      - name: Check Formatting
-        run: crystal tool format --check
+        run: KEMAL_ENV=test crystal spec --verbose
+        env:
+          SAFELIST: ${{ matrix.safelist }}

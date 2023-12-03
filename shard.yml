@@ -1,8 +1,8 @@
 name: UDL Server
-version: 0.1.0
+version: 1.0.0.pre1
 
 authors:
-  - Fernando Valverde <fernando@visualcosita.com>
+  - Fernando Valverde <fernando@fdo.cr>
 
 targets:
   udl-server:
@@ -14,8 +14,15 @@ dependencies:
   spec-kemal:
     github: kemalcr/spec-kemal
   defense:
-    github: fdocr/defense
-    branch: jgaskins-redis
+    github: defense-cr/defense
+  dotenv:
+    github: drum445/dotenv
+    version: ~> 0.5.0
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 1.5.0
 
 crystal: 1.10.1
 
