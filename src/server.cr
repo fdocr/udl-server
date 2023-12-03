@@ -26,6 +26,27 @@ get "/" do |env|
   end
 end
 
+get "/.well-known/apple-app-site-association" do |env|
+  env.response.content_type = "application/json"
+
+  if aasa_apps = ENV["AASA_APP_IDS"]?
+    aasa_app_ids = aasa_apps.split(" ")
+    {
+      applinks: {
+        apps: [] of String,
+        details: aasa_app_ids.map do |id|
+          { appID: id, paths: [ "/*" ] }
+        end
+      },
+      activitycontinuation: {
+        apps: aasa_app_ids
+      }
+    }.to_json
+  else
+    { error: "AASA_APP_ID not configured" }.to_json
+  end
+end
+
 get "/*" do |env|
   udl_error = "Invalid path `#{env.request.path}` - #{error_context}"
   render "src/views/fallback.ecr"

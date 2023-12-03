@@ -15,6 +15,14 @@ describe "UDL Server" do
       response.status_code.should eq(302)
       response.headers["Location"].should eq(target_url)
     end
+
+    it "populates apple-app-site-association file" do
+      get "/.well-known/apple-app-site-association"
+
+      result = "{\"applinks\":{\"apps\":[],\"details\":[{\"appID\":\"ABCDE12345.com.example.app\",\"paths\":[\"/*\"]},{\"appID\":\"ABCDE12345.com.example.app2\",\"paths\":[\"/*\"]}]},\"activitycontinuation\":{\"apps\":[\"ABCDE12345.com.example.app\",\"ABCDE12345.com.example.app2\"]}}"
+      response.body.should eq(result)
+      response.headers["Content-Type"].should eq("application/json")
+    end
   end
 
   context "failure" do
