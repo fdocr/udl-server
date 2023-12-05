@@ -36,7 +36,7 @@ If this service adds value to you or your company please consider sponsoring me 
 
 ## Self host
 
-The project makes it easy for you to self host an UDL Server. The easiest and recommended way to do this is to:
+The project makes it easy for you to self host a UDL Server. The easiest and recommended way to do this is to:
 
 1. Fork this repository
 1. Configure a PaaS to automatically deploy from your fork repository
@@ -63,7 +63,7 @@ The project makes it easy for you to self host an UDL Server. The easiest and re
 
 Alternatively you can run the lightweight [`fdocr/udl-server`](https://hub.docker.com/repository/docker/fdocr/udl-server/general) Docker container on your own. At the time of this writing the docker image is only about `26.3 MB` in size (`10.87 MB` compressed).
 
-### Troubleshooting
+## Troubleshooting
 
 Some common details to keep in mind in case your redirects aren't working properly:
 
@@ -80,7 +80,7 @@ The project is now ported to [Crystal](https://crystal-lang.org/) and [Kemal fra
 
 ![diagram](nanosecond-response-times.png)
 
-I'm aiming to work on adding a bunch of other features to the project and [share blog posts](https://fdo.cr/blog) with walkthroughs/benchmarks/etc. Feel free to tag along and submit feature requests in the issue tracker!
+I'm aiming to work on adding a bunch of other features to the project and [share blog posts](https://fdo.cr/blog) with walkthroughs/benchmarks/etc. Feel free to tag along and submit feature requests in the issue tracker.
 
 ## Contributing
 
