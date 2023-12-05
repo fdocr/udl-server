@@ -33,17 +33,17 @@ get "/.well-known/apple-app-site-association" do |env|
     aasa_app_ids = aasa_apps.split(" ")
     {
       applinks: {
-        apps: [] of String,
+        apps:    [] of String,
         details: aasa_app_ids.map do |id|
-          { appID: id, paths: [ "/*" ] }
-        end
+          {appID: id, paths: ["/*"]}
+        end,
       },
       activitycontinuation: {
-        apps: aasa_app_ids
-      }
+        apps: aasa_app_ids,
+      },
     }.to_json
   else
-    { error: "AASA_APP_ID not configured" }.to_json
+    {error: "AASA_APP_ID not configured"}.to_json
   end
 end
 
