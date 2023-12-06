@@ -61,7 +61,7 @@ The project makes it easy for you to self host a UDL Server. The easiest way to 
       - Enable activity continuation and other [associated domain features](https://developer.apple.com/documentation/xcode/supporting-associated-domains)
       - i.e. `ABCDE12345.com.example.app`
 
-Alternatively you can run the lightweight [`fdocr/udl-server`](https://hub.docker.com/repository/docker/fdocr/udl-server/general) Docker container on your own. At the time of this writing the docker image is only about `26.3 MB` in size (`10.87 MB` compressed).
+Alternatively you can run the lightweight [`fdocr/udl-server`](https://hub.docker.com/repository/docker/fdocr/udl-server) Docker container on your own. At the time of this writing the docker image is only about `26.3 MB` in size (`10.87 MB` compressed).
 
 ## Troubleshooting
 
