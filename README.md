@@ -32,11 +32,11 @@ This will bypass the limitation of Safari (embedded webview) that doesn't allow 
 
 `https://udl.fdo.cr` is a **public (free to use) UDL Server** instance for anyone to try out and use on your own. It has usage limits (throttling), which should be more than enough for most low-medium traffic websites.
 
-If this service adds value to you or your company please consider sponsoring me right here on GitHub. I offer different sponsor tiers too where I will host a private instance without usage limits for high traffic websites. [Read more about this on my profile](https://github.com/sponsors/fdocr) to support my OSS work.
+If this service adds value to you or your company please consider sponsoring me right here on GitHub. I offer different sponsor tiers too where I will host a private instance without usage limits for ensured reliability. [Read more about this on my profile](https://github.com/sponsors/fdocr) to support the OSS work I do on my free time.
 
 ## Self host
 
-The project makes it easy for you to self host a UDL Server. The easiest and recommended way to do this is to:
+The project makes it easy for you to self host a UDL Server. The easiest way to do this is to:
 
 1. Fork this repository
 1. Configure a PaaS to automatically deploy from your fork repository
@@ -74,7 +74,7 @@ Some common details to keep in mind in case your redirects aren't working proper
 
 ## Performance & Roadmap
 
-The project was originally written using [Ruby](https://www.ruby-lang.org/en/) & [Sinatra](https://sinatrarb.com/). It was a joy to write and worked perfectly fine, but I always wanted this "pivot request" to be as instantaneous as possible. It was doing `~40 ms` response times for `P99` (on less than 1 rpm but consistent daily traffic).
+The project was originally written using [Ruby](https://www.ruby-lang.org/en/) & [Sinatra](https://sinatrarb.com/). It was a joy to write and worked perfectly fine, but I always wanted this "pivot request" to be as instantaneous as possible. It was doing `~40 ms` response times for `P99` on less than 1 rpm but supporting consistent daily traffic.
 
 The project is now ported to [Crystal](https://crystal-lang.org/) and [Kemal framework](https://kemalcr.com/). I'm now seeing response times drop to microseconds, which is very exciting!
 
