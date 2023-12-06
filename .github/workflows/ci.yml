@@ -1,23 +1,40 @@
 name: CI
+
 on:
   push:
     branches:
       - main
   pull_request:
     branches:
-      - main
+      - "*"
+
 jobs:
-  test:
-    name: Test Suite
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        safelist:
+          - "fdo.cr github.com"
+          - ""
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Download source
+        uses: actions/checkout@v3
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+
+      - name: Cache shards
+        uses: actions/cache@v3
         with:
-          ruby-version: 3.1.2
-      - name: Install dependencies
-        run: bundle install
+          path: lib
+          key: ${{ runner.os }}-shards-${{ hashFiles('**/shard.lock') }}
+          restore-keys: ${{ runner.os }}-shards-
+
+      - name: Install shards
+        run: shards update
+
       - name: Run tests
-        run: bundle exec rspec
+        run: KEMAL_ENV=test crystal spec --verbose
+        env:
+          SAFELIST: ${{ matrix.safelist }}

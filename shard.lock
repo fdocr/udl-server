@@ -1,0 +1,42 @@
+version: 2.0
+shards:
+  ameba:
+    git: https://github.com/crystal-ameba/ameba.git
+    version: 1.5.0
+
+  backtracer:
+    git: https://github.com/sija/backtracer.cr.git
+    version: 1.2.2
+
+  db:
+    git: https://github.com/crystal-lang/crystal-db.git
+    version: 0.12.0
+
+  defense:
+    git: https://github.com/defense-cr/defense.git
+    version: 0.4.0+git.commit.ce4f9b6c69b0fd11e61815e8c17e4c1083a1a4d0
+
+  dotenv:
+    git: https://github.com/drum445/dotenv.git
+    version: 0.5.0
+
+  exception_page:
+    git: https://github.com/crystal-loot/exception_page.git
+    version: 0.3.1
+
+  kemal:
+    git: https://github.com/kemalcr/kemal.git
+    version: 1.4.0
+
+  radix:
+    git: https://github.com/luislavena/radix.git
+    version: 0.4.1
+
+  redis:
+    git: https://github.com/jgaskins/redis.git
+    version: 0.8.0
+
+  spec-kemal:
+    git: https://github.com/kemalcr/spec-kemal.git
+    version: 1.0.0
+
