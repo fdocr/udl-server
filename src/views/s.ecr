@@ -27,20 +27,6 @@
     <div class="spinner"></div>
     <div class="loading-text">Redirecting to your destination...</div>
 
-    <!-- <script>
-
-      https://local.fdo.cr/s/https%3A%2F%2Fwww.jomashop.com%2Frolex.html
-
-
-      try {
-        console.log("TRY <%= target_uri.to_s %>")
-        document.location = "<%= target_uri.to_s %>"
-      } catch (e) {
-        console.log("CATCH <%= fallback_url.to_s %>")
-        document.location = "<%= fallback_url.to_s %>"
-      }
-    </script> -->
-
     <script type="text/javascript">
       window.onload = function() {
           // Deep link to your app goes here
@@ -49,7 +35,7 @@
           setTimeout(function() {
               // Link to the App Store should go here -- only fires if deep link fails                
               window.location = "<%= fallback_url.to_s %>";
-          }, 500);
+          }, 600);
       };
     </script>
     <iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
