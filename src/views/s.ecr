@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body style="text-align: center; padding-top: 50px;">
+
+    <style>
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+
+    <div class="container">
+      <div class="spinner"></div>
+      <div class="loading-text">Redirecting to your destination...</div>
+    </div>
+
+    <script type="text/javascript">
+      window.onload = function() {
+          // Deep link to your app goes here
+          document.getElementById("l").src = "<%= target_uri.to_s %>";
+
+          setTimeout(function() {
+              window.location = "<%= fallback_url.to_s %>";
+
+              setTimeout(function() {
+                window.close();
+              }, 1000);
+          }, 600);
+      };
+    </script>
+    <iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
+
+  </body>
+</html>
