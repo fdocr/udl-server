@@ -26,6 +26,17 @@ get "/" do |env|
   end
 end
 
+get "/s/:scheme/:url" do |env|
+  begin
+    fallback_url = URI.parse(env.params.url["url"])
+    target_uri = URI.parse(env.params.url["url"])
+    target_uri.scheme = env.params.url["scheme"]
+    render "src/views/s.ecr"
+  rescue udl_error
+    render "src/views/fallback.ecr"
+  end
+end
+
 get "/.well-known/apple-app-site-association" do |env|
   env.response.content_type = "application/json"
 
