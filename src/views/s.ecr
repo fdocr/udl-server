@@ -43,8 +43,11 @@
           document.getElementById("l").src = "<%= target_uri.to_s %>";
 
           setTimeout(function() {
-              // Link to the App Store should go here -- only fires if deep link fails                
               window.location = "<%= fallback_url.to_s %>";
+
+              setTimeout(function() {
+                window.close();
+              }, 1000);
           }, 600);
       };
     </script>
