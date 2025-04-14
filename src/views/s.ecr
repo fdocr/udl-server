@@ -3,6 +3,14 @@
   <body style="text-align: center; padding-top: 50px;">
 
     <style>
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
       .spinner {
         width: 50px;
         height: 50px;
@@ -24,8 +32,10 @@
       }
     </style>
 
-    <div class="spinner"></div>
-    <div class="loading-text">Redirecting to your destination...</div>
+    <div class="container">
+      <div class="spinner"></div>
+      <div class="loading-text">Redirecting to your destination...</div>
+    </div>
 
     <script type="text/javascript">
       window.onload = function() {
