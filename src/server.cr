@@ -13,7 +13,19 @@ error_context = "Use the root path instead, i.e. `/?r=TARGET_URL_HERE`"
 
 get "/" do |env|
   begin
-    target_uri = URI.parse(env.params.query["r"])
+    redirect_param = env.params.query["r"]?
+
+    # If no r parameter, redirect to DEFAULT_DESTINATION (only if set)
+    unless redirect_param
+      if default_destination = ENV["DEFAULT_DESTINATION"]?
+        env.redirect default_destination
+        next
+      else
+        raise "Missing redirect parameter"
+      end
+    end
+
+    target_uri = URI.parse(redirect_param)
 
     # Check that it's a valid URL
     valid_uri = /https?/ =~ target_uri.scheme && target_uri.host
@@ -48,8 +60,15 @@ get "/.well-known/apple-app-site-association" do |env|
 end
 
 get "/*" do |env|
-  udl_error = "Invalid path `#{env.request.path}` - #{error_context}"
-  render "src/views/fallback.ecr"
+  # If DEFAULT_DESTINATION is set, redirect to it + path; otherwise show fallback.
+  if default_target = ENV["DEFAULT_DESTINATION"]?
+    path = env.request.path
+    final_url = default_target.rstrip("/") + "/" + path.lstrip("/")
+    env.redirect final_url
+  else
+    udl_error = "Invalid path `#{env.request.path}` - #{error_context}"
+    render "src/views/fallback.ecr"
+  end
 end
 
 error 404 do
