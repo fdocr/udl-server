@@ -30,6 +30,20 @@ https://udl.fdo.cr/?r=https://reservation.com/restaurants/silvestre
 
 This will bypass the limitation of Safari (embedded webview) that doesn't allow your Universal Links to trigger. You should now have a working "open in app" UX.
 
+### Default destination support
+If the `DEFAULT_DESTINATION` environment variable is set and no `r` query parameter is provided:
+
+- A request to the root path:
+
+    - `https://udl.fdo.cr/` will redirect to `DEFAULT_DESTINATION`
+
+- A request with a path:
+
+    - `https://udl.fdo.cr/restaurants/silvestre` will redirect to `DEFAULT_DESTINATION + "/restaurants/silvestre"`
+
+The original `?r=` format continues to work as before. If `DEFAULT_DESTINATION` is not set, behavior remains unchanged.
+
+
 `https://udl.fdo.cr` is a **public (free to use) UDL Server** instance for anyone to try out and use on your own. It has usage limits (throttling), which should be more than enough for most low-medium traffic websites.
 
 If this service adds value to you or your company please consider sponsoring me right here on GitHub. I offer different sponsor tiers too where I will host a private instance without usage limits for ensured reliability. [Read more about this on my profile](https://github.com/sponsors/fdocr) to support the OSS work I do on my free time.
